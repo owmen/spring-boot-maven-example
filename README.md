@@ -3,10 +3,10 @@ created a messaging platform that is faster and delivers higher quality than the
 in order to sustain that user growth.
 
 This Application's Purpose: 
-* Get the most recent Message for a User
-* Get all Messages for a User 
-* Search a Users Messages for given text
-* Create a new Message for a User
+* Get the most recent message for a user
+* Get all messages for a user
+* Search a user's messages for given text
+* Create a new message for a user
 
 Call To Action:
 Cost is not an issue. They'd like to use whatever is best for the Product's performance and quality.
