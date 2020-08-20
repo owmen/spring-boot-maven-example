@@ -27,8 +27,8 @@ public class MessageController {
     }
 
     @GetMapping("/messages/search")
-    public ResponseEntity searchMessagesByFirstName(@RequestParam String firstName) {
-        return ResponseEntity.ok(messageService.messageSearchByFirstName(firstName));
+    public ResponseEntity searchMessagesByFirstName(@RequestParam String firstName, @RequestParam String lastName, @RequestParam String searchText) {
+        return ResponseEntity.ok(messageService.messageSearch(firstName, lastName, searchText));
     }
 
     @PostMapping("/createnewmessage")

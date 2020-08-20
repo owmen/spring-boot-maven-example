@@ -53,22 +53,22 @@ public class MessageService {
         return list.get(0);
     }
 
-    public List<Message> messageSearchByFirstName(String firstName) {
-        List<User> users = null;
+    public Message messageSearch(String firstName, String lastName, String searchText) {
+        User user = null;
         try {
-            users = userServiceClient.getUsers(firstName);
+            user = userServiceClient.getUser(firstName, lastName);
         } catch (Exception e) {
             log.error(e.getMessage(), e);
         }
-        List<Message> Returnlist = new ArrayList<>();
-        for (int i = 0; i < users.size(); i++) {
-            List<Message> list = messageRepository.findAllByUserId(users.get(i).getUserId());
-            for (int j = 0; j < list.size(); j++) {
-                Returnlist.add(list.get(j));
+        List<Message> AllUserMessages = messageRepository.findAllByUserId(user.getUserId());
+        Message foundMessage = null;
+        for (int i = 0; i < AllUserMessages.size(); i++) {
+            Message message = AllUserMessages.get(i);
+            if (message.getMessageBody().contains(searchText)) {
+                foundMessage = message;
             }
         }
-        Collections.sort(Returnlist, (o1, o2) -> {return o1.getCreatedTimestamp().compareTo(o2.getCreatedTimestamp());});
-        return Returnlist;
+        return foundMessage;
     }
 
 
