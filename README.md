@@ -11,7 +11,7 @@ in order to sustain that user growth.
 ### Call To Action:
 Cost is not an issue. They'd like to use whatever is best for the Product's performance and quality.
 
-This Message Web Service is a core application of the Message4You Product.It needs to meet the following criteria:
+This Message Web Service is a core application of the Message4You Product. It needs to meet the following criteria:
 
 * Fast Response Times - Users are complaining about slow searches
 * Gracefully handle from any errors
