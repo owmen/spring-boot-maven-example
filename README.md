@@ -9,10 +9,11 @@ in order to sustain that user growth.
 * Create a new message for a user
 
 ### Call To Action:
-Cost is not an issue. They'd like to use whatever is best for the Product's performance and quality.
+This Message Web Service is a core application of the Message4You Product. It needs to be available 24/7.
+Cost is not an issue. Messages4You Inc. is willing to use whatever is best for the Product's performance and quality. 
 
-This Message Web Service is a core application of the Message4You Product. It needs to meet the following criteria:
+What cloud services would you recommend for deployment of this application and it's dependencies?
 
-* Fast Response Times - Users are complaining about slow searches
-* Gracefully handle from any errors
-* Recover from network outages
+### Additional Work:
+* Users are complaining about slow searches
+* IT Support has trouble debugging production problems

@@ -1,6 +1,5 @@
 package com.owmen.sbme.message;
 
-import com.owmen.sbme.user.User;
 import io.restassured.path.json.JsonPath;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
