@@ -1,4 +1,4 @@
-package com.owmen.sbme.user;
+package com.zacharyohearn.sbme.user;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;

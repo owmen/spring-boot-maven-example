@@ -1,8 +1,8 @@
-package com.owmen.sbme;
+package com.zacharyohearn.sbme;
 
 import com.github.tomakehurst.wiremock.WireMockServer;
-import com.owmen.sbme.message.Message;
-import com.owmen.sbme.message.MessageRepository;
+import com.zacharyohearn.sbme.message.Message;
+import com.zacharyohearn.sbme.message.MessageRepository;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;

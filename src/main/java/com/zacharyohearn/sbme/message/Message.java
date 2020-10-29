@@ -1,4 +1,4 @@
-package com.owmen.sbme.message;
+package com.zacharyohearn.sbme.message;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

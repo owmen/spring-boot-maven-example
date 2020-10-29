@@ -1,4 +1,4 @@
-package com.owmen.sbme.message;
+package com.zacharyohearn.sbme.message;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;

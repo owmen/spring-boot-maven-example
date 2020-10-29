@@ -1,14 +1,12 @@
-package com.owmen.sbme.message;
+package com.zacharyohearn.sbme.message;
 
-import com.owmen.sbme.user.User;
-import com.owmen.sbme.user.UserServiceClient;
+import com.zacharyohearn.sbme.user.User;
+import com.zacharyohearn.sbme.user.UserServiceClient;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 

@@ -1,4 +1,4 @@
-package com.owmen.sbme.configuration;
+package com.zacharyohearn.sbme.configuration;
 
 import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.context.annotation.Bean;

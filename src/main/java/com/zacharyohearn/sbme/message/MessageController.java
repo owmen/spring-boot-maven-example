@@ -1,4 +1,4 @@
-package com.owmen.sbme.message;
+package com.zacharyohearn.sbme.message;
 
 import io.restassured.path.json.JsonPath;
 import org.springframework.beans.factory.annotation.Autowired;

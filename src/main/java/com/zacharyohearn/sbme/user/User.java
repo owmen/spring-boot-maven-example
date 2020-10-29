@@ -1,4 +1,4 @@
-package com.owmen.sbme.user;
+package com.zacharyohearn.sbme.user;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

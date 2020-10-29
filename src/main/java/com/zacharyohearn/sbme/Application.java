@@ -1,4 +1,4 @@
-package com.owmen.sbme;
+package com.zacharyohearn.sbme;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
