@@ -1,13 +1,11 @@
 package com.zacharyohearn.sbme.message;
 
 import io.restassured.path.json.JsonPath;
+import lombok.SneakyThrows;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 public class MessageController {
@@ -30,12 +28,19 @@ public class MessageController {
         return ResponseEntity.ok(messageService.messageSearch(firstName, lastName, searchText));
     }
 
+    @SneakyThrows
     @PostMapping("/createnewmessage")
     public ResponseEntity createNewMessage(@RequestBody String requestBody) {
         String body = JsonPath.from(requestBody).getString("body");
         String firstName = JsonPath.from(requestBody).getString("firstName");
         String lastName = JsonPath.from(requestBody).getString("lastName");
         messageService.createNewMessage(body, firstName, lastName);
+        return ResponseEntity.ok().build();
+    }
+
+    @PatchMapping("/editmesssage/{messageId}")
+    public ResponseEntity editmessage(@PathVariable Integer messageId, @RequestBody String mesagebody) {
+        messageService.editmessage(messageId, mesagebody);
         return ResponseEntity.ok().build();
     }
 }

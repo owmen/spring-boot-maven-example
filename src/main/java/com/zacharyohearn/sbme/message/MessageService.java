@@ -1,5 +1,7 @@
 package com.zacharyohearn.sbme.message;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.zacharyohearn.sbme.user.User;
 import com.zacharyohearn.sbme.user.UserServiceClient;
 import org.slf4j.Logger;
@@ -7,6 +9,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 
@@ -22,6 +25,8 @@ public class MessageService {
         this.messageRepository = messageRepository;
         this.userServiceClient = userServiceClient;
     }
+
+    private Message foundMessage = new Message();
 
     public List<Message> getMessagesForUser(String firstName, String lastName) {
         User user = userServiceClient.getUser(firstName, lastName);
@@ -59,7 +64,6 @@ public class MessageService {
             log.error(e.getMessage(), e);
         }
         List<Message> AllUserMessages = messageRepository.findAllByUserId(user.getUserId());
-        Message foundMessage = null;
         for (int i = 0; i < AllUserMessages.size(); i++) {
             Message message = AllUserMessages.get(i);
             if (message.getMessageBody().contains(searchText)) {
@@ -70,11 +74,13 @@ public class MessageService {
     }
 
 
-    public void createNewMessage(String body, String firstName, String lastName) {
+    public void createNewMessage(String body, String firstName, String lastName) throws JsonProcessingException {
         User user = null;
         try {
             user = userServiceClient.getUser(firstName, lastName);
         } catch (Exception e) {
+            ObjectMapper om = new ObjectMapper();
+            log.error(om.writeValueAsString(e));
             e.printStackTrace();
         }
         Message newMessage = Message.builder()
@@ -83,5 +89,10 @@ public class MessageService {
                 .createdTimestamp(LocalDateTime.now())
                 .build();
         messageRepository.save(newMessage);
+    }
+
+    public void editmessage(Integer messgeId, String messageBody) {
+        Message message = messageRepository.getOne(messgeId);
+        message.setMessageBody(messageBody);
     }
 }

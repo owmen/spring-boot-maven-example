@@ -6,6 +6,7 @@ import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpMethod;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
+import org.springframework.web.util.UriComponentsBuilder;
 
 import java.util.List;
 
@@ -25,18 +26,12 @@ public class UserServiceClient {
      * @return The found {@code User} or {@code null} if no users were found
      */
     public User getUser(String firstName, String lastName) {
-        String url = getUrlForEnvironment() + "/search?firstName=" + firstName + "&lastName=" + lastName;
-        return restTemplate.getForObject(url, User.class);
-    }
+        String url = getUrlForEnvironment() + "/search";
+        UriComponentsBuilder builder = UriComponentsBuilder.fromUriString(url)
+                .queryParam("firstName", firstName)
+                .queryParam("lastName", lastName);
 
-    /**
-     * Uses the User Web Service to search all of the users and returns those with a matching {@code firstName} value
-     * @param firstName the value used in the search
-     * @return a list of {@code User} objects
-     */
-    public List<User> getUsers(String firstName) {
-        String url = getUrlForEnvironment() + "/search?firstName=" + firstName;
-        return restTemplate.exchange(url, HttpMethod.GET, null, new ParameterizedTypeReference<List<User>>() {}).getBody();
+        return restTemplate.getForObject(builder.buildAndExpand().toUri(), User.class);
     }
 
     private String getUrlForEnvironment() {
