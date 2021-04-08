@@ -14,18 +14,18 @@ public class MessageController {
     private MessageService messageService;
 
     @GetMapping("/messages")
-    public ResponseEntity getMessagesForUser(@RequestParam String firstName, @RequestParam String lastName) {
-        return ResponseEntity.ok(messageService.getMessagesForUser(firstName, lastName));
+    public ResponseEntity getMessagesForUser(@RequestParam String firstName, @RequestParam String lastName, @RequestParam String dateOfBirth) {
+        return ResponseEntity.ok(messageService.getMessagesForUser(firstName, lastName, dateOfBirth));
     }
 
     @GetMapping("/messages/first")
-    public ResponseEntity getFirstMessage(@RequestParam String firstName, @RequestParam String lastName, @RequestParam int age) {
-        return ResponseEntity.ok(messageService.getFirst(firstName, lastName));
+    public ResponseEntity getFirstMessage(@RequestParam String firstName, @RequestParam String lastName, @RequestParam String dateOfBirth, @RequestParam int age) {
+        return ResponseEntity.ok(messageService.getFirst(firstName, lastName, dateOfBirth));
     }
 
     @GetMapping("/messages/search")
-    public ResponseEntity searchMessagesByFirstName(@RequestParam String firstName, @RequestParam String lastName, @RequestParam String searchText) {
-        return ResponseEntity.ok(messageService.messageSearch(firstName, lastName, searchText));
+    public ResponseEntity searchMessagesByFirstName(@RequestParam String firstName, @RequestParam String lastName, @RequestParam String dateOfBirth, @RequestParam String searchText) {
+        return ResponseEntity.ok(messageService.messageSearch(firstName, lastName, dateOfBirth, searchText));
     }
 
     @SneakyThrows
@@ -34,7 +34,8 @@ public class MessageController {
         String body = JsonPath.from(requestBody).getString("body");
         String firstName = JsonPath.from(requestBody).getString("firstName");
         String lastName = JsonPath.from(requestBody).getString("lastName");
-        messageService.createNewMessage(body, firstName, lastName);
+        String dateOfBirth = JsonPath.from(requestBody).getString("dateOfBirth");
+        messageService.createNewMessage(body, firstName, lastName, dateOfBirth);
         return ResponseEntity.ok().build();
     }
 

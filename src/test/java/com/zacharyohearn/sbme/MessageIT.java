@@ -49,12 +49,17 @@ public class MessageIT {
 
         messageRepository.save(messageForUser);
 
-        wireMockServer.stubFor(get(urlEqualTo("/search?firstName=john&lastName=doe")).willReturn(aResponse().withHeader("content-type", "application/json").withStatus(200).withBodyFile("user.json")));
+        wireMockServer.stubFor(get(urlPathEqualTo("/search"))
+                .withQueryParam("firstName", equalTo("john"))
+                .withQueryParam("lastName", equalTo("doe"))
+                .withQueryParam("dateOfBirth", equalTo("01/01/1950"))
+                .willReturn(aResponse().withHeader("content-type", "application/json").withStatus(200).withBodyFile("user.json")));
 
         List<Message> actual = given()
                 .log().all()
                 .queryParam("firstName", "john")
                 .queryParam("lastName", "doe")
+                .queryParam("dateOfBirth", "01/01/1950")
                 .when()
                 .port(port)
                 .get("/messages")

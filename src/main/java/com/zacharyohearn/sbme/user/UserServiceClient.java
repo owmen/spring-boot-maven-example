@@ -20,16 +20,17 @@ public class UserServiceClient {
     private RestTemplate restTemplate;
 
     /**
-     * Uses the User Web Service to search all of the users and returns the one with a matching {@code firstName} and {@code lastName}
+     * Calls to the User web service to search all of the users and return the one with a matching {@code firstName} and {@code lastName}
      * @param firstName the first name of the user
      * @param lastName the last name of the user
      * @return The found {@code User} or {@code null} if no users were found
      */
-    public User getUser(String firstName, String lastName) {
+    public User getUser(String firstName, String lastName, String dateOfBirth) {
         String url = getUrlForEnvironment() + "/search";
         UriComponentsBuilder builder = UriComponentsBuilder.fromUriString(url)
                 .queryParam("firstName", firstName)
-                .queryParam("lastName", lastName);
+                .queryParam("lastName", lastName)
+                .queryParam("dateOfBirth", dateOfBirth);
 
         return restTemplate.getForObject(builder.buildAndExpand().toUri(), User.class);
     }

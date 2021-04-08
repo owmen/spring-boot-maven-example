@@ -28,8 +28,8 @@ public class MessageService {
 
     private Message foundMessage = new Message();
 
-    public List<Message> getMessagesForUser(String firstName, String lastName) {
-        User user = userServiceClient.getUser(firstName, lastName);
+    public List<Message> getMessagesForUser(String firstName, String lastName, String dateOfBirth) {
+        User user = userServiceClient.getUser(firstName, lastName, dateOfBirth);
         List<Message> list= messageRepository.findAllByUserId(user.getUserId());
 
 
@@ -43,9 +43,9 @@ public class MessageService {
         return list;
     }
 
-    public Message getFirst(String firstName, String lastName)
+    public Message getFirst(String firstName, String lastName, String dateOfBirth)
     {
-        User user = userServiceClient.getUser(firstName, lastName);
+        User user = userServiceClient.getUser(firstName, lastName, dateOfBirth);
         List<Message> list = messageRepository.findAllByUserId(user.getUserId());
         list.sort(new Comparator<Message>() {
             @Override
@@ -56,11 +56,12 @@ public class MessageService {
         return list.get(0);
     }
 
-    public Message messageSearch(String firstName, String lastName, String searchText) {
+    public Message messageSearch(String firstName, String lastName, String dateOfBirth, String searchText) {
         User user = null;
         try {
-            user = userServiceClient.getUser(firstName, lastName);
-        } catch (Exception e) {
+            user = userServiceClient.getUser(firstName, lastName, dateOfBirth);
+        } catch (Exception e)
+        {
             log.error(e.getMessage(), e);
         }
         List<Message> AllUserMessages = messageRepository.findAllByUserId(user.getUserId());
@@ -74,10 +75,11 @@ public class MessageService {
     }
 
 
-    public void createNewMessage(String body, String firstName, String lastName) throws JsonProcessingException {
+    public void createNewMessage(String body, String firstName, String lastName, String dateOfBirth) throws JsonProcessingException
+    {
         User user = null;
         try {
-            user = userServiceClient.getUser(firstName, lastName);
+            user = userServiceClient.getUser(firstName, lastName, dateOfBirth);
         } catch (Exception e) {
             ObjectMapper om = new ObjectMapper();
             log.error(om.writeValueAsString(e));
