@@ -28,7 +28,7 @@ public class MessageService {
 
     private Message foundMessage = new Message();
 
-    public List<Message> getMessagesForUser(String firstName, String lastName, String dateOfBirth) {
+    public List<MessageDTO> getMessagesForUser(String firstName, String lastName, String dateOfBirth) {
         User user = userServiceClient.getUser(firstName, lastName, dateOfBirth);
         List<Message> list= messageRepository.findAllByUserId(user.getUserId());
 
@@ -40,10 +40,25 @@ public class MessageService {
             }
         });
 
-        return list;
+        return c(list, firstName, lastName, user.getUserId());
     }
 
-    public Message getFirst(String firstName, String lastName, String dateOfBirth)
+    private List<MessageDTO> c(List<Message> list, String first, String last, int userId) {
+        List<MessageDTO> retVal = new ArrayList<>();
+        for (Message message: list) {
+            retVal.add(MessageDTO.builder()
+                    .messageId(message.getMessageId())
+                    .messageBody(message.getMessageBody())
+                    .createdTimeStamp(message.getCreatedTimestamp())
+                    .firstName(first)
+                    .lastName(last)
+                    .userId(userId)
+                    .build());
+        }
+        return retVal;
+    }
+
+    public MessageDTO getFirst(String firstName, String lastName, String dateOfBirth)
     {
         User user = userServiceClient.getUser(firstName, lastName, dateOfBirth);
         List<Message> list = messageRepository.findAllByUserId(user.getUserId());
@@ -53,10 +68,21 @@ public class MessageService {
                 return o1.getCreatedTimestamp().compareTo(o2.getCreatedTimestamp());
             }
         });
-        return list.get(0);
+        return c(list.get(0), firstName, lastName, user.getUserId());
     }
 
-    public Message messageSearch(String firstName, String lastName, String dateOfBirth, String searchText) {
+    private MessageDTO c(Message message, String first, String last, int user) {
+        return MessageDTO.builder()
+                .messageId(message.getMessageId())
+                .messageBody(message.getMessageBody())
+                .createdTimeStamp(message.getCreatedTimestamp())
+                .firstName(first)
+                .lastName(last)
+                .userId(user)
+                .build();
+    }
+
+    public MessageDTO messageSearch(String firstName, String lastName, String dateOfBirth, String searchText) {
         User user = null;
         try {
             user = userServiceClient.getUser(firstName, lastName, dateOfBirth);
@@ -69,9 +95,9 @@ public class MessageService {
             Message message = AllUserMessages.get(i);
             if (message.getMessageBody().contains(searchText)) {
                 foundMessage = message;
-            }
-        }
-        return foundMessage;
+            }}
+
+        return c(foundMessage, firstName, lastName, user.getUserId());
     }
 
 

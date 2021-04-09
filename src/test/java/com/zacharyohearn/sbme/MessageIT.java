@@ -2,6 +2,7 @@ package com.zacharyohearn.sbme;
 
 import com.github.tomakehurst.wiremock.WireMockServer;
 import com.zacharyohearn.sbme.message.Message;
+import com.zacharyohearn.sbme.message.MessageDTO;
 import com.zacharyohearn.sbme.message.MessageRepository;
 import org.junit.Before;
 import org.junit.Test;
@@ -55,7 +56,7 @@ public class MessageIT {
                 .withQueryParam("dateOfBirth", equalTo("01/01/1950"))
                 .willReturn(aResponse().withHeader("content-type", "application/json").withStatus(200).withBodyFile("user.json")));
 
-        List<Message> actual = given()
+        List<MessageDTO> actual = given()
                 .log().all()
                 .queryParam("firstName", "john")
                 .queryParam("lastName", "doe")
@@ -65,7 +66,7 @@ public class MessageIT {
                 .get("/messages")
                 .then()
                 .statusCode(200)
-                .extract().jsonPath().getList(".", Message.class);
+                .extract().jsonPath().getList(".", MessageDTO.class);
 
         assertThat(actual.size(), is(1));
     }

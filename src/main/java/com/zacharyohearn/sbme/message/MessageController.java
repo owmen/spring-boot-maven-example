@@ -13,10 +13,14 @@ public class MessageController {
     @Autowired
     private MessageService messageService;
 
+
     @GetMapping("/messages")
-    public ResponseEntity getMessagesForUser(@RequestParam String firstName, @RequestParam String lastName, @RequestParam String dateOfBirth) {
-        return ResponseEntity.ok(messageService.getMessagesForUser(firstName, lastName, dateOfBirth));
+    public ResponseEntity getMessagesForUser(@RequestParam String firstName, @RequestParam String lastName, @RequestParam String dateOfBirth)
+    {
+        return ResponseEntity.ok(messageService.
+                getMessagesForUser(firstName, lastName, dateOfBirth));
     }
+
 
     @GetMapping("/messages/first")
     public ResponseEntity getFirstMessage(@RequestParam String firstName, @RequestParam String lastName, @RequestParam String dateOfBirth, @RequestParam int age) {
@@ -25,18 +29,21 @@ public class MessageController {
 
     @GetMapping("/messages/search")
     public ResponseEntity searchMessagesByFirstName(@RequestParam String firstName, @RequestParam String lastName, @RequestParam String dateOfBirth, @RequestParam String searchText) {
-        return ResponseEntity.ok(messageService.messageSearch(firstName, lastName, dateOfBirth, searchText));
+        return ResponseEntity.ok(messageService.
+                messageSearch(firstName, lastName, dateOfBirth, searchText));
     }
 
     @SneakyThrows
     @PostMapping("/createnewmessage")
     public ResponseEntity createNewMessage(@RequestBody String requestBody) {
-        String body = JsonPath.from(requestBody).getString("body");
+        String body =
+                JsonPath.from(requestBody).getString("body");
         String firstName = JsonPath.from(requestBody).getString("firstName");
-        String lastName = JsonPath.from(requestBody).getString("lastName");
-        String dateOfBirth = JsonPath.from(requestBody).getString("dateOfBirth");
-        messageService.createNewMessage(body, firstName, lastName, dateOfBirth);
-        return ResponseEntity.ok().build();
+        String lastName =   JsonPath.from(requestBody).getString("lastName");
+        String dateOfbirth= JsonPath.from(requestBody).getString("dateOfBirth");
+        messageService.createNewMessage(body, firstName, lastName, dateOfbirth);
+        return ResponseEntity
+                .ok().build();
     }
 
     @PatchMapping("/editmesssage/{messageId}")
@@ -45,3 +52,11 @@ public class MessageController {
         return ResponseEntity.ok().build();
     }
 }
+
+
+
+
+
+
+
+

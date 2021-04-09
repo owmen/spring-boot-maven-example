@@ -28,9 +28,7 @@ public class UserServiceClient {
     public User getUser(String firstName, String lastName, String dateOfBirth) {
         String url = getUrlForEnvironment() + "/search";
         UriComponentsBuilder builder = UriComponentsBuilder.fromUriString(url)
-                .queryParam("firstName", firstName)
-                .queryParam("lastName", lastName)
-                .queryParam("dateOfBirth", dateOfBirth);
+                .queryParam("firstName", firstName)  .queryParam("lastName", lastName).queryParam("dateOfBirth", dateOfBirth);
 
         return restTemplate.getForObject(builder.buildAndExpand().toUri(), User.class);
     }
