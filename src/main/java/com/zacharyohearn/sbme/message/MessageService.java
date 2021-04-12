@@ -115,12 +115,9 @@ public class MessageService {
                         .userId(user.getUserId())
                 .messageBody(body)
                 .createdTimestamp(LocalDateTime.now())
+                .lastUpdatedTimestamp(LocalDateTime.now())
                 .build();
         messageRepository.save(newMessage);
     }
 
-    public void editmessage(Integer messgeId, String messageBody) {
-        Message message = messageRepository.getOne(messgeId);
-        message.setMessageBody(messageBody);
-    }
 }

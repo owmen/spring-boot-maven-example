@@ -46,11 +46,6 @@ public class MessageController {
                 .ok().build();
     }
 
-    @PatchMapping("/editmesssage/{messageId}")
-    public ResponseEntity editmessage(@PathVariable Integer messageId, @RequestBody String mesagebody) {
-        messageService.editmessage(messageId, mesagebody);
-        return ResponseEntity.ok().build();
-    }
 }
 
 

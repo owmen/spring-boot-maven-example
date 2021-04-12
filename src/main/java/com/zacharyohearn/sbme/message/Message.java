@@ -28,4 +28,7 @@ public class Message {
 
     @Column(name = "createdTimestamp")
     private LocalDateTime createdTimestamp;
+
+    @Column(name = "lastUpdatedTimestamp")
+    private LocalDateTime lastUpdatedTimestamp;
 }
