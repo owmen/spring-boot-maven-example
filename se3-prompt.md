@@ -21,7 +21,7 @@ The solution must also include automated tests.
 * Current User Complaints:
     * Searches are slow and inconsistent
     * Timestamps are incorrect
-    * Editing a message does not work
+    * Need an endpoint to edit a message
 * Other observations:
     * IT Support has trouble debugging production problems
     * Unreliable network causes frequent failed requests to User Web Service

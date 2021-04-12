@@ -24,7 +24,7 @@ The solution must also include automated tests.
 * Current User Complaints:
     * Searches are slow and inconsistent
     * Timestamps are incorrect
-    * Editing a message does not work
+    * Need an endpoint to edit a message
 * Other observations:
     * IT Support has trouble debugging production problems
     * Unreliable network causes frequent failed requests to User Web Service
@@ -38,4 +38,5 @@ Sometimes, a third instance is set up because the other two stop accepting addit
 The company needs your recommendations on how they can deliver new features and bug fixes faster to their users as well as reduce performance degradation.
 Their user base continues to grow, so the company needs a solution that will support them over time.
 Cost is not an issue, but the solution should meet the requirements without unneeded expense.
-The solution should include changes outside this code base.
+The solution should include changes outside this code base. 
+Please record your solution on a scratchpad, and we will discuss verbally at the end of the interview.
