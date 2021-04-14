@@ -20,10 +20,11 @@ public class UserServiceClient {
     private RestTemplate restTemplate;
 
     /**
-     * Calls to the User web service to search all of the users and return the one with a matching {@code firstName} and {@code lastName}
+     * Calls to the User web service to search all of the users and return the one with a matching {@code firstName}, {@code lastName}, and {@code dateOfBirth}
      * @param firstName the first name of the user
      * @param lastName the last name of the user
-     * @return The found {@code User} or {@code null} if no users were found
+     * @param dateOfBirth the date of birth of the user
+     * @return The found {@code User} or {@code null} if no user was found
      */
     public User getUser(String firstName, String lastName, String dateOfBirth) {
         String url = getUrlForEnvironment() + "/search";

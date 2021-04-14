@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
 
@@ -50,9 +51,9 @@ public class MessageService {
                     .messageId(message.getMessageId())
                     .messageBody(message.getMessageBody())
                     .createdTimeStamp(message.getCreatedTimestamp())
-                    .firstName(first)
-                    .lastName(last)
-                    .userId(userId)
+                    .recipientFirstName(first)
+                    .recipientLastName(last)
+                    .recipientUserId(userId)
                     .build());
         }
         return retVal;
@@ -76,13 +77,13 @@ public class MessageService {
                 .messageId(message.getMessageId())
                 .messageBody(message.getMessageBody())
                 .createdTimeStamp(message.getCreatedTimestamp())
-                .firstName(first)
-                .lastName(last)
-                .userId(user)
+                .recipientFirstName(first)
+                .recipientLastName(last)
+                .recipientUserId(user)
                 .build();
     }
 
-    public MessageDTO messageSearch(String firstName, String lastName, String dateOfBirth, String searchText) {
+    public List<MessageDTO> messageSearch(String firstName, String lastName, String dateOfBirth, String searchText) {
         User user = null;
         try {
             user = userServiceClient.getUser(firstName, lastName, dateOfBirth);
@@ -97,7 +98,7 @@ public class MessageService {
                 foundMessage = message;
             }}
 
-        return c(foundMessage, firstName, lastName, user.getUserId());
+        return Arrays.asList(c(foundMessage, firstName, lastName, user.getUserId()));
     }
 
 
