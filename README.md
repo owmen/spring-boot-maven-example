@@ -10,11 +10,10 @@ The company has several web services, but they need your help on improving one o
 * Get all messages for a user
 * Search a user's messages for given text
 * Create a new message for a user
-* Edit a message
 
 ## Call To Action:
 This Message web service is a core application of the Message4You product.
-They need your help to write cleaner code and resolve specific user issues. Please, do not break the existing api contract. All changes must be backwards compatible to not affect consumers.
+They need your help to write cleaner code and resolve specific user issues. Do not break the existing api contract. All changes must be backwards compatible to not affect consumers.
 The solution must also include automated tests.
 
 ### Specific Issues:
