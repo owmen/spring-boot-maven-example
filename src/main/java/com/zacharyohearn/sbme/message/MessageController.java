@@ -21,12 +21,6 @@ public class MessageController {
                 getMessagesForUser(firstName, lastName, dateOfBirth));
     }
 
-
-    @GetMapping("/messages/first")
-    public ResponseEntity getFirstMessage(@RequestParam String firstName, @RequestParam String lastName, @RequestParam String dateOfBirth, @RequestParam int age) {
-        return ResponseEntity.ok(messageService.getFirst(firstName, lastName, dateOfBirth));
-    }
-
     @GetMapping("/messages/search")
     public ResponseEntity searchMessagesByFirstName(@RequestParam String firstName, @RequestParam String lastName, @RequestParam String dateOfBirth, @RequestParam String searchText) {
         return ResponseEntity.ok(messageService.

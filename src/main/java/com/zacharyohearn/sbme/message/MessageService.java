@@ -59,19 +59,6 @@ public class MessageService {
         return retVal;
     }
 
-    public MessageDTO getFirst(String firstName, String lastName, String dateOfBirth)
-    {
-        User user = userServiceClient.getUser(firstName, lastName, dateOfBirth);
-        List<Message> list = messageRepository.findAllByUserId(user.getUserId());
-        list.sort(new Comparator<Message>() {
-            @Override
-            public int compare(Message o1, Message o2) {
-                return o1.getCreatedTimestamp().compareTo(o2.getCreatedTimestamp());
-            }
-        });
-        return c(list.get(0), firstName, lastName, user.getUserId());
-    }
-
     private MessageDTO c(Message message, String first, String last, int user) {
         return MessageDTO.builder()
                 .messageId(message.getMessageId())
@@ -102,7 +89,9 @@ public class MessageService {
     }
 
 
-    public void createNewMessage(String body, String firstName, String lastName, String dateOfBirth) throws JsonProcessingException
+
+
+public void createNewMessage(String body, String firstName, String lastName, String dateOfBirth) throws JsonProcessingException
     {
         User user = null;
         try {
