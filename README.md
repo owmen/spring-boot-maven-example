@@ -6,7 +6,6 @@ They can't do that with a flaky application.
 The company has several web services, but they need your help on improving one of the core services.
 
 ## This Application's Purpose:
-* Get the most recent message for a user
 * Get all messages for a user
 * Search a user's messages for given text
 * Create a new message for a user
