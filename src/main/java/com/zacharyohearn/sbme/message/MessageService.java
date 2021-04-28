@@ -21,13 +21,15 @@ public class MessageService {
 
     public MessageRepository messageRepository;
     public UserServiceClient userServiceClient;
+    public ObjectMapper objectMapper;
 
-    public MessageService(MessageRepository messageRepository, UserServiceClient userServiceClient) {
+    public MessageService(MessageRepository messageRepository, UserServiceClient userServiceClient, ObjectMapper objectMapper) {
         this.messageRepository = messageRepository;
         this.userServiceClient = userServiceClient;
+        this.objectMapper = objectMapper;
     }
 
-    private Message foundMessage = new Message();
+//    private Message foundMessage = new Message(); //Move this to be local to the method
 
     public List<MessageDTO> getMessagesForUser(String firstName, String lastName, String dateOfBirth) {
         User user = userServiceClient.getUser(firstName, lastName, dateOfBirth);
@@ -79,13 +81,19 @@ public class MessageService {
             log.error(e.getMessage(), e);
         }
         List<Message> AllUserMessages = messageRepository.findAllByUserId(user.getUserId());
+        List<Message> foundMessages = new ArrayList<>();
         for (int i = 0; i < AllUserMessages.size(); i++) {
             Message message = AllUserMessages.get(i);
             if (message.getMessageBody().contains(searchText)) {
-                foundMessage = message;
+                foundMessages.add(message);
             }}
 
-        return Arrays.asList(c(foundMessage, firstName, lastName, user.getUserId()));
+        List<MessageDTO> foundMessageDtos = new ArrayList<>();
+        for(Message message : foundMessages){
+            MessageDTO messageDto = c(message, firstName, lastName, user.getUserId()); //Easier to debug
+            foundMessageDtos.add(messageDto);
+        }
+        return foundMessageDtos;
     }
 
 
@@ -108,6 +116,13 @@ public void createNewMessage(String body, String firstName, String lastName, Str
                 .lastUpdatedTimestamp(LocalDateTime.now())
                 .build();
         messageRepository.save(newMessage);
+    }
+
+    public void editMessageBody(Integer messageId, String body){
+        Message message = messageRepository.getOne(messageId);
+        message.setMessageBody(body);
+        message.setLastUpdatedTimestamp(LocalDateTime.now());
+        messageRepository.save(message);
     }
 
 }

@@ -18,8 +18,8 @@ The solution must also include automated tests. Feel free to add any dependencie
 ### Specific Issues:
 * Current User Complaints:
     * Searches are slow and inconsistent
-    * Timestamps are incorrect
-    * Need an endpoint to edit a message's body
+    * Timestamps are incorrect  //Need to switch away from LocalDateTime to something like Instant.now() or set a timezone
+    * Need an endpoint to edit a message's body // new endpoint /editmessage handles this
 * Other observations:
     * IT Support has trouble debugging production problems
     * Unreliable network causes frequent failed requests to User Web Service
