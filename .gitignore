@@ -1,0 +1,72 @@
+##################### SVN
+.svn/
+.svn
+
+
+##################### IntelliJ
+.idea/
+*.ipr
+*.iws
+*.iml
+out/
+.idea_modules
+##################### Maven
+target/
+pom.xml.tag
+pom.xml.releaseBackup
+pom.xml.next
+release.properties
+##################### Eclipse
+*.pydevproject
+.metadata
+.gradle
+bin/
+tmp/
+*.tmp
+*.bak
+*.swp
+*~.nib
+local.properties
+.settings/
+.loadpath
+
+##################### External tool builders
+.externalToolBuilders/
+LOG_DIR_IS_UNDEFINED/
+
+##################### Locally stored Eclipse launch configurations
+*.launch
+
+##################### CDT-specific
+.cproject
+
+##################### PDT-specific
+.buildpath
+
+##################### sbteclipse plugin
+.target
+
+##################### TeXlipse plugin
+.texlipse
+
+
+##################### Gradle
+.gradle
+build/
+
+*.log
+*.war
+*.class
+.project
+*.classpath
+*.prefs
+*.name
+
+################### signalR UI
+/apis/signalr/node_modules
+/apis/signalr/obj
+/apis/signalr/OBCMessagingListener/obj
+/apis/signalr/OBCMessagingListener/node_modules
+/apis/signalr/OBCMessagingListener/wwwroot
+/apis/signalr/wwwroot
+/apis/signalr/OBCMessagingListener.Tests/obj
