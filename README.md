@@ -13,7 +13,7 @@ The company has several web services, but they need your help on improving one o
 ## Call To Action:
 This Message web service is a core application of the Message4You product.
 They need your help to write cleaner code and resolve specific user issues. Do not break the existing api contract. All changes must be backwards compatible to not affect consumers.
-The solution must also include automated tests. Feel free to add any dependencies you need.
+The solution must also include automated tests (unit, integration, or both). Feel free to add any dependencies you need.
 
 ### Specific Issues:
 * Current User Complaints:
